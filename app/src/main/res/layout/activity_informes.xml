@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InformesActivity"
+    android:background="@drawable/fondo">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/contenedortabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabMode="fixed"
+        android:background="@color/transparent">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/clientestab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/clienteicon"
+            android:text="@string/clientes" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/empleadostab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/empleadoicon"
+            android:text="@string/empleados" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/fechatab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/calendario"
+            android:text="@string/fecha" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp_tabs"
+        android:layout_width="409dp"
+        android:layout_height="657dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contenedortabs" />
+</androidx.constraintlayout.widget.ConstraintLayout>

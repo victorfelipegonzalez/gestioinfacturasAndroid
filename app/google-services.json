@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "957592908279",
+    "project_id": "probandofirebase-a0ac7",
+    "storage_bucket": "probandofirebase-a0ac7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:957592908279:android:ff7b69b379a9338118bef2",
+        "android_client_info": {
+          "package_name": "com.gestionfacturas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuLsAxIzkbwfOf3ylRg4FhYF_ejmR6-8I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
