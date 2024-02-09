@@ -12,10 +12,13 @@ import android.widget.Toast;
 import com.gestionfacturas.models.ClienteModel;
 import com.gestionfacturas.models.EmpleadoModel;
 
+import java.sql.SQLException;
+
 public class RegistroClienteActivity extends AppCompatActivity {
-    EditText nombre,correo,telefono,nif;
-    ClienteModel cliente;
-    EmpleadoModel empleado;
+    private EditText nombre,correo,telefono,nif;
+    private ClienteModel cliente;
+    private EmpleadoModel empleado;
+    private static final int REQUEST_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +40,7 @@ public class RegistroClienteActivity extends AppCompatActivity {
             Intent intent = new Intent(this, RegistroDireccionClienteActivity.class);
             intent.putExtra("CLIENTE",cliente);
             intent.putExtra("EMPLEADO",empleado);
-            startActivity(intent);
+            startActivityForResult(intent,REQUEST_CODE);
         }
     }
     public void reiniciarDatos(){
@@ -85,5 +88,15 @@ public class RegistroClienteActivity extends AppCompatActivity {
     }
     private boolean isValidEmail(CharSequence email) {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                finish();
+            }
+        }
     }
 }

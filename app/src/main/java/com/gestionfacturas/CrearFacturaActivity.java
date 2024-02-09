@@ -35,8 +35,7 @@ public class CrearFacturaActivity extends AppCompatActivity {
     private List<ClienteModel> listaClientes;
     private Gson gson;
     private ArrayList<String> nombreClientes;
-    public static final int REQUEST_CODE_CREAR_LINEAS_FACTURAS = 1;
-
+    private static final int REQUEST_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +49,16 @@ public class CrearFacturaActivity extends AppCompatActivity {
         ArrayAdapter<String> nombres = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line,nombreClientes);
         buscarCliente.setAdapter(nombres);
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                finish();
+            }
+        }
+    }
     public void obtenerListaClientes(){
         try{
             listaClientes = null;
@@ -88,7 +96,6 @@ public class CrearFacturaActivity extends AppCompatActivity {
                         Toast.makeText(CrearFacturaActivity.this, "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show();
                     }
                 }
-
                 @Override
                 public void onFailure(Call<ResponseModel> call, Throwable t) {
                     Log.e("API Call", "Error en la llamada API", t);
@@ -124,16 +131,8 @@ public class CrearFacturaActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, CrearLineasFacturaActivity.class);
                 intent.putExtra("FACTURA",factura);
                 intent.putExtra("EMPLEADO",empleado);
-                startActivity(intent);
+                startActivityForResult(intent,REQUEST_CODE);
             }
-        }
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQUEST_CODE_CREAR_LINEAS_FACTURAS && resultCode == RESULT_OK) {
-            finish();
         }
     }
 }

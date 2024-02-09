@@ -148,9 +148,9 @@ public class RegistroEmailActivity extends AppCompatActivity {
         mAuth.createUserWithEmailAndPassword(emailEmpresa,passwordEmpresa).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                Intent intent = new Intent(RegistroEmailActivity.this, LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                Intent intent = new Intent();
+                setResult(RESULT_OK, intent);
+                finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

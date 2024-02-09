@@ -25,6 +25,7 @@ public class RegistroDireccionClienteActivity extends AppCompatActivity {
     private EditText direccion,cp,ciudad,pais;
     private ClienteModel cliente;
     private EmpleadoModel empleado;
+    private static final int REQUEST_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,10 +100,9 @@ public class RegistroDireccionClienteActivity extends AppCompatActivity {
                         ResponseModel responseModel = response.body();
                         if(responseModel.getSuccess()==0){
                             // Clientes registrado
-                            Intent intent = new Intent(RegistroDireccionClienteActivity.this, MainActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            intent.putExtra("EMPLEADO",empleado);
-                            startActivity(intent);
+                            Intent intent = new Intent();
+                            setResult(RESULT_OK, intent);
+                            finish();
                             Toast.makeText(RegistroDireccionClienteActivity.this,responseModel.getMessage(), Toast.LENGTH_SHORT).show();
                         }else{
                             // Si ha salido bien pero no se ha podido registrar porque algun error con los datos
@@ -126,5 +126,4 @@ public class RegistroDireccionClienteActivity extends AppCompatActivity {
             }
         });
     }
-
 }

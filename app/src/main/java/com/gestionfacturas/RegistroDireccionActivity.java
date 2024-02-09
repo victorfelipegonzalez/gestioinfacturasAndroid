@@ -12,9 +12,10 @@ import android.widget.Toast;
 import com.gestionfacturas.models.EmpresaModel;
 
 public class RegistroDireccionActivity extends AppCompatActivity {
-    Button siguiente,volver;
-    EditText direccion,cp,ciudad,pais;
-    EmpresaModel empresa;
+    private Button siguiente,volver;
+    private EditText direccion,cp,ciudad,pais;
+    private EmpresaModel empresa;
+    private static final int REQUEST_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,18 @@ public class RegistroDireccionActivity extends AppCompatActivity {
         pais = findViewById(R.id.et_paisEmpresa);
         empresa = (EmpresaModel) getIntent().getSerializableExtra("EMPRESA");
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                Intent intent = new Intent();
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        }
+    }
     public void volverRegistroDatos(View v){
         finish();
     }
@@ -34,7 +47,7 @@ public class RegistroDireccionActivity extends AppCompatActivity {
         if(comprobarDatos()){
             Intent intent = new Intent(this,RegistroEmailActivity.class);
             intent.putExtra("EMPRESA",empresa);
-            startActivity(intent);
+            startActivityForResult(intent,RESULT_OK);
         }
 
     }

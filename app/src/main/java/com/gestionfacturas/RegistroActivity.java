@@ -12,9 +12,10 @@ import android.widget.Toast;
 import com.gestionfacturas.models.EmpresaModel;
 
 public class RegistroActivity extends AppCompatActivity {
-    Button siguiente,volver;
-    EditText nombre,nif,telefono;
-    EmpresaModel empresa;
+    private Button siguiente,volver;
+    private EditText nombre,nif,telefono;
+    private EmpresaModel empresa;
+    private static final int REQUEST_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +31,19 @@ public class RegistroActivity extends AppCompatActivity {
         if(comprobarDatos()){
             Intent intent = new Intent(this, RegistroDireccionActivity.class);
             intent.putExtra("EMPRESA",empresa);
-            startActivity(intent);
+            startActivityForResult(intent, REQUEST_CODE);
         }
 
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                finish();
+            }
+        }
     }
     public void volverInicio(View v){
         finish();

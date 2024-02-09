@@ -129,10 +129,9 @@ public class CrearLineasFacturaActivity extends AppCompatActivity {
                     if(response.isSuccessful()){
                         ResponseModel responseModel = response.body();
                         if(responseModel.getSuccess()==0){
-                            Intent intent = new Intent(CrearLineasFacturaActivity.this, MainActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            intent.putExtra("EMPLEADO",empleado);
-                            startActivity(intent);
+                            Intent intent = new Intent();
+                            setResult(RESULT_OK, intent);
+                            finish();
                             Toast.makeText(CrearLineasFacturaActivity.this, responseModel.getMessage(), Toast.LENGTH_SHORT).show();
                         }else{
                             Toast.makeText(CrearLineasFacturaActivity.this, responseModel.getMessage(), Toast.LENGTH_SHORT).show();
