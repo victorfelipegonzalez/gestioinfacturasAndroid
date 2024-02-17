@@ -90,7 +90,7 @@ public class CrearFacturaActivity extends AppCompatActivity {
                                 Toast.makeText(CrearFacturaActivity.this, "Servidor sin respuesta", Toast.LENGTH_SHORT).show();
                             } catch (IOException e) {
                                 e.printStackTrace();
-                            };
+                            }
                         }
                     } else {
                         Toast.makeText(CrearFacturaActivity.this, "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show();

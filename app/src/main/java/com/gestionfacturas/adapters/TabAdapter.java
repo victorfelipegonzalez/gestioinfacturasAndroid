@@ -1,6 +1,5 @@
 package com.gestionfacturas.adapters;
 
-import android.util.Log;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;

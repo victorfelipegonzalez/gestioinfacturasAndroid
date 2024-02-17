@@ -1,7 +1,6 @@
 package com.gestionfacturas;
 
 import android.os.Bundle;
-import android.webkit.WebView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.barteksc.pdfviewer.PDFView;

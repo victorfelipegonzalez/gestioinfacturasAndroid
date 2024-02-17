@@ -45,7 +45,7 @@
             android:inputType="textAutoComplete"
             android:paddingHorizontal="5dp"
             app:hintTextColor="@color/black"
-            tools:ignore="DuplicateSpeakableTextCheck"
+            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck"
             tools:layout_editor_absoluteX="64dp"
             tools:layout_editor_absoluteY="369dp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:backgroundTint="@color/transparent"
-        android:text="ESTADISTICAS EMPLEADOS"
+        android:text="@string/estadisticas_empleados"
         android:textColor="@color/black"
         app:cornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"

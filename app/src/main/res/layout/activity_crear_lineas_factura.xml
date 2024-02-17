@@ -75,19 +75,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:backgroundTint="@color/transparent"
+        android:onClick="crearlineaFactura"
         android:text="@string/a_adir_material"
         android:textColor="@color/black"
         app:cornerRadius="5dp"
         app:icon="@drawable/anadir"
         app:iconSize="30dp"
         app:iconTint="@null"
-        android:onClick="crearlineaFactura"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
-        app:strokeColor="@color/grey"
+        app:strokeColor="@color/black"
         app:strokeWidth="2dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints,DuplicateSpeakableTextCheck" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_lineasPedido"
@@ -120,7 +120,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rv_lineasPedido"
-        app:strokeColor="@color/grey"
+        app:strokeColor="@color/black"
         app:strokeWidth="2dp"
         tools:ignore="MissingConstraints" />
 
@@ -140,6 +140,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bt_crear_factura"
-        app:strokeColor="@color/grey"
+        app:strokeColor="@color/black"
         app:strokeWidth="2dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

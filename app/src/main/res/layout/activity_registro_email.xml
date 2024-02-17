@@ -72,7 +72,7 @@
         android:layout_marginTop="40dp"
         android:backgroundTint="@color/transparent"
         android:textColor="@color/black"
-        app:strokeColor="@color/grey"
+        app:strokeColor="@color/black"
         app:strokeWidth="2dp"
         android:onClick="vovlerRegistroDireccion"
         android:text="@string/volver"
@@ -96,7 +96,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
-        app:strokeColor="@color/grey"
+        app:strokeColor="@color/black"
         app:strokeWidth="2dp"
         tools:ignore="MissingConstraints" />
 

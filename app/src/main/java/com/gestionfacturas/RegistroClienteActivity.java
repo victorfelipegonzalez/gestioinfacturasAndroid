@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.gestionfacturas.models.ClienteModel;
 import com.gestionfacturas.models.EmpleadoModel;
 
-import java.sql.SQLException;
 
 public class RegistroClienteActivity extends AppCompatActivity {
     private EditText nombre,correo,telefono,nif;

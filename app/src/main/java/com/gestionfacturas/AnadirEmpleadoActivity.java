@@ -1,6 +1,6 @@
 package com.gestionfacturas;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -16,15 +16,7 @@ import android.widget.Toast;
 import com.gestionfacturas.api.APIConnection;
 import com.gestionfacturas.api.ApiService;
 import com.gestionfacturas.models.EmpleadoModel;
-import com.gestionfacturas.models.EmpresaModel;
 import com.gestionfacturas.models.ResponseModel;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;

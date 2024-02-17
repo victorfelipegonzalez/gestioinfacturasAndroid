@@ -11,7 +11,6 @@ import android.widget.Toast;
 import com.gestionfacturas.api.APIConnection;
 import com.gestionfacturas.api.ApiService;
 import com.gestionfacturas.models.EmpleadoModel;
-import com.gestionfacturas.models.EmpresaModel;
 import com.gestionfacturas.models.ResponseModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -20,7 +19,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 
-import java.util.Arrays;
 
 import retrofit2.Call;
 import retrofit2.Callback;

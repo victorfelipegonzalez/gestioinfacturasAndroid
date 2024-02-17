@@ -17,14 +17,9 @@ import com.gestionfacturas.models.EmpleadoModel;
 import com.gestionfacturas.models.ResponseModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -82,7 +77,7 @@ public class RegistroEmpleadoActivity extends AppCompatActivity {
                 correo.setHint(getResources().getString(R.string.correo_electronico));
                 Toast.makeText(this,"Correo electrónico erróneo",Toast.LENGTH_SHORT).show();
             }catch (Exception e) {
-                String error = e.getMessage();
+                Log.e("ERROR", e.getMessage());
             }
         }
     }
@@ -113,7 +108,7 @@ public class RegistroEmpleadoActivity extends AppCompatActivity {
                     if(isValidEmail(String.valueOf(correo.getText()))){
                         empleado.setNombre_empleado(String.valueOf(nombre.getText()));
                         empleado.setCorreo(String.valueOf(correo.getText()));
-                        empleado.setTipo_empleado(empleado.ROL_EMPLEADO);
+                        empleado.setTipo_empleado(EmpleadoModel.ROL_EMPLEADO);
                         return true;
                     }else{
                         Toast.makeText(this,"Correo incorrecto",Toast.LENGTH_SHORT).show();

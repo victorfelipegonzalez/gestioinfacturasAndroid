@@ -25,8 +25,6 @@ import com.gestionfacturas.models.ResponseModel;
 import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -191,7 +189,7 @@ public class CrearLineasFacturaActivity extends AppCompatActivity {
                                 Toast.makeText(CrearLineasFacturaActivity.this, "Servidor sin respuesta", Toast.LENGTH_SHORT).show();
                             } catch (IOException e) {
                                 e.printStackTrace();
-                            };
+                            }
                         }
                     } else {
                         Toast.makeText(CrearLineasFacturaActivity.this, "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show();

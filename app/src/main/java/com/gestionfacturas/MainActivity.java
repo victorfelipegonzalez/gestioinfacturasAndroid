@@ -5,28 +5,17 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import com.gestionfacturas.adapters.AdapterPersonalizado;
-import com.gestionfacturas.api.APIConnection;
-import com.gestionfacturas.api.ApiService;
 import com.gestionfacturas.models.ClienteModel;
 import com.gestionfacturas.models.EmpleadoModel;
-import com.gestionfacturas.models.EmpresaModel;
 import com.gestionfacturas.models.ProductoModel;
-import com.gestionfacturas.models.ResponseModel;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.gson.Gson;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -34,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     private String[]titulos;
     private int[]images;
     private GridView panel;
-    private Gson gson;
     private Toolbar toolbar;
 
     @Override
@@ -45,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         panel = findViewById(R.id.gv_panel);
-        gson = new Gson();
         modoVisualizacion();
 
 
@@ -106,9 +93,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.cambiar_contrasena) {
-
-        } else if (item.getItemId() == R.id.salir) {
+        if (item.getItemId() == R.id.salir) {
            logout();
         }
         return true;

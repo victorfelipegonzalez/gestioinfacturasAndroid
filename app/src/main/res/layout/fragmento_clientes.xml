@@ -47,7 +47,7 @@
             android:inputType="textAutoComplete"
             android:paddingHorizontal="5dp"
             app:hintTextColor="@color/black"
-            tools:ignore="DuplicateSpeakableTextCheck"
+            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck"
             tools:layout_editor_absoluteX="64dp"
             tools:layout_editor_absoluteY="369dp" />
     </com.google.android.material.textfield.TextInputLayout>
