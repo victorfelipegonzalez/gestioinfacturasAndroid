@@ -23,6 +23,7 @@ public class InformesActivity extends AppCompatActivity {
         empleado = (EmpleadoModel) getIntent().getSerializableExtra("EMPLEADO");
         TabAdapter tabAdapter = new TabAdapter(this,empleado.getId_empresa());
         viewPager.setAdapter(tabAdapter);
+        // Creamos los tabs
         new TabLayoutMediator(tabLayout, viewPager,
                 (tab, position) -> {
                     switch (position) {

@@ -28,6 +28,8 @@ public class RegistroDireccionActivity extends AppCompatActivity {
         pais = findViewById(R.id.et_paisEmpresa);
         empresa = (EmpresaModel) getIntent().getSerializableExtra("EMPRESA");
     }
+    // Método que se queda a la espera de que se cierre la activity que hemos abierto desde
+    // esta activity, comprueba el resultado obtenido y actua conforme a ello
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -40,9 +42,12 @@ public class RegistroDireccionActivity extends AppCompatActivity {
             }
         }
     }
+    //Método para volver a la activity anterior
     public void volverRegistroDatos(View v){
         finish();
     }
+    //Método que nos envia a la activity de registro email
+    // si los  datos son validados
     public void registroEmail(View v){
         if(comprobarDatos()){
             Intent intent = new Intent(this,RegistroEmailActivity.class);
@@ -51,6 +56,7 @@ public class RegistroDireccionActivity extends AppCompatActivity {
         }
 
     }
+    // Método para comprobar los datos
     public boolean comprobarDatos() {
         if (direccion.getText().toString().isEmpty()) {
             Toast.makeText(this, "Debe introducir una dirección", Toast.LENGTH_SHORT).show();
@@ -79,6 +85,7 @@ public class RegistroDireccionActivity extends AppCompatActivity {
 
         }
     }
+    // Método para reniciar los campos
     public void reiniciarDatos(){
         direccion.setText(null);
         cp.setText(null);

@@ -49,16 +49,18 @@ public class CrearFacturaActivity extends AppCompatActivity {
         ArrayAdapter<String> nombres = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line,nombreClientes);
         buscarCliente.setAdapter(nombres);
     }
+    // Método que se queda a la espera de que se cierre la activity que hemos abierto desde
+    // esta activity, comprueba el resultado obtenido y actua conforme a ello
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 finish();
             }
         }
     }
+    // Método para obtener la lista de clientes
     public void obtenerListaClientes(){
         try{
             listaClientes = null;
@@ -106,11 +108,13 @@ public class CrearFacturaActivity extends AppCompatActivity {
             e.getStackTrace();
         }
     }
-
+    //Método para volver a la activity anterior
     public void volverCrearFactura(View v ){
         finish();
     }
 
+    //Método para generar una factura, en la que añadimos el cliente y la id de la empresa,
+    // después enviaremos la factura para completarla a la siguiente activity
     public void crearFactura(View v){
         FacturaModel factura = new FacturaModel();
         String busqueda = String.valueOf(buscarCliente.getText());

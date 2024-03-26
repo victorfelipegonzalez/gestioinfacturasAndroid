@@ -140,11 +140,11 @@ public class RegistroEmpleadoActivity extends AppCompatActivity {
             }
         });
     }
-
-
+    // Método para volver a la activity anterior
     public void volverRegistroEmpleado(View v){
         finish();
     }
+    // Método para validar el patrón del email
     private boolean isValidEmail(CharSequence email) {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }

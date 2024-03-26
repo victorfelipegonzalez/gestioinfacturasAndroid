@@ -29,6 +29,8 @@ public class RegistroClienteActivity extends AppCompatActivity {
         cliente = (ClienteModel) getIntent().getSerializableExtra("CLIENTE");
         empleado = (EmpleadoModel) getIntent().getSerializableExtra("EMPLEADO");
     }
+    //Método que nos envia a la activity de registro dirección cliente
+    // si los  datos son validados
     public void registroDireccionCliente(View v){
         if(comprobarDatos()){
             cliente.setNombre_cliente(String.valueOf(nombre.getText()));
@@ -42,6 +44,7 @@ public class RegistroClienteActivity extends AppCompatActivity {
             startActivityForResult(intent,REQUEST_CODE);
         }
     }
+    // Método para reniciar los campos
     public void reiniciarDatos(){
         nombre.setText(null);
         nombre.setHint(getResources().getString(R.string.nombre));
@@ -82,12 +85,16 @@ public class RegistroClienteActivity extends AppCompatActivity {
 
         }
     }
+    //Método para volver a la activity anterior
     public void volverRegistroCliente(View v){
         finish();
     }
+    // Método para validar el patrón del email
     private boolean isValidEmail(CharSequence email) {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
+    // Método que se queda a la espera de que se cierre la activity que hemos abierto desde
+    // esta activity, comprueba el resultado obtenido y actua conforme a ello
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

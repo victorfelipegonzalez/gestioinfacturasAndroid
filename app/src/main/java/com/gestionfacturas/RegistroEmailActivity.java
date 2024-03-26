@@ -47,9 +47,12 @@ public class RegistroEmailActivity extends AppCompatActivity {
 
 
     }
+    // Método para volver a la activity anterior
     public void vovlerRegistroDireccion(View v){
         finish();
     }
+    //Método que envia la empresa a la API
+    // si los  datos son validados
     public void finRegistro(View v){
         if(comprobarDatos()){
             try{

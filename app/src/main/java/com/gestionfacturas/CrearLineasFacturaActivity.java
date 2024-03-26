@@ -127,6 +127,8 @@ public class CrearLineasFacturaActivity extends AppCompatActivity {
                     if(response.isSuccessful()){
                         ResponseModel responseModel = response.body();
                         if(responseModel.getSuccess()==0){
+                            // Si la factura se ha creado correctamente volvemos a la activity anterior
+                            // mandando un codigo para que lo reciba y actue en consecuancia a lo recibido
                             Intent intent = new Intent();
                             setResult(RESULT_OK, intent);
                             finish();
@@ -150,9 +152,11 @@ public class CrearLineasFacturaActivity extends AppCompatActivity {
         }
 
     }
+    // Método para volver a la activity anterior
     public void volverLineasFactura(View v){
         finish();
     }
+    // Método para obtener la lista de productos disponibles para añadir a la factura
     public void obtenerProductos(){
         try{
             nombreProductos = new ArrayList<>();
@@ -206,6 +210,7 @@ public class CrearLineasFacturaActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+    //Método para comprobar si ya has añadido un producto a la factura
     public boolean comprobarProductoEnLista(ProductoModel producto){
         boolean repetido = false;
         for(int i = 0;i< listaLineasFactura.size();i++){
@@ -215,10 +220,12 @@ public class CrearLineasFacturaActivity extends AppCompatActivity {
         }
         return repetido;
     }
+    // Método que nos limpia los campos
     public void limpiarCampos(){
         nombreMaterial.setText(null);
         cantidadMaterial.setText(null);
     }
+    // Método para validar los campos
     public boolean comprobarCampos(){
         if(nombreMaterial.getText().toString().isEmpty()){
             Toast.makeText(this,"Debe introducir el nombre\n de un material",Toast.LENGTH_SHORT).show();

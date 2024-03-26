@@ -25,7 +25,6 @@ public class RegistroDireccionClienteActivity extends AppCompatActivity {
     private EditText direccion,cp,ciudad,pais;
     private ClienteModel cliente;
     private EmpleadoModel empleado;
-    private static final int REQUEST_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +38,8 @@ public class RegistroDireccionClienteActivity extends AppCompatActivity {
         cliente = (ClienteModel) getIntent().getSerializableExtra("CLIENTE");
         empleado = (EmpleadoModel) getIntent().getSerializableExtra("EMPLEAD");
     }
-
+    //Método que envia el cliente a la API
+    // si los  datos son validados
     public void guardarDatosCliente(View v) {
         if(comprobarDatos()){
             insertarCliente(cliente);
@@ -74,6 +74,7 @@ public class RegistroDireccionClienteActivity extends AppCompatActivity {
         }
 
     }
+    // Método para reniciar los campos
     public void reiniciarDatos(){
         direccion.setText(null);
         cp.setText(null);
@@ -84,6 +85,7 @@ public class RegistroDireccionClienteActivity extends AppCompatActivity {
         ciudad.setHint(getResources().getString(R.string.ciudad));
         pais.setHint(getResources().getString(R.string.pais));
     }
+    // Método para volver a la activity anterior
     public void volverRegistroDireccionClientes(View v){
         finish();
     }
@@ -105,7 +107,7 @@ public class RegistroDireccionClienteActivity extends AppCompatActivity {
                             finish();
                             Toast.makeText(RegistroDireccionClienteActivity.this,responseModel.getMessage(), Toast.LENGTH_SHORT).show();
                         }else{
-                            // Si ha salido bien pero no se ha podido registrar porque algun error con los datos
+                            // Si ha salido bien pero no se ha podido registrar por algun error con los datos
                             Toast.makeText(RegistroDireccionClienteActivity.this,responseModel.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     } else {

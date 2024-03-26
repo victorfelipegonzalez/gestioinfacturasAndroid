@@ -27,6 +27,9 @@ public class RegistroActivity extends AppCompatActivity {
         telefono = findViewById(R.id.et_telefonoEmpresa);
         empresa = new EmpresaModel();
     }
+
+    //Método que nos envia a la activity de registro dirección
+    // si los  datos son validados
     public void registroDireccion(View v){
         if(comprobarDatos()){
             Intent intent = new Intent(this, RegistroDireccionActivity.class);
@@ -35,6 +38,8 @@ public class RegistroActivity extends AppCompatActivity {
         }
 
     }
+    // Método que se queda a la espera de que se cierre la activity que hemos abierto desde
+    // esta activity, comprueba el resultado obtenido y actua conforme a ello
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -45,9 +50,11 @@ public class RegistroActivity extends AppCompatActivity {
             }
         }
     }
+    //Método para volver a la activity anterior
     public void volverInicio(View v){
         finish();
     }
+    //Método para validar los datos
     public boolean comprobarDatos(){
         if(nombre.getText().toString().isEmpty()){
             Toast.makeText(this,"Debe introducir un nombre",Toast.LENGTH_SHORT).show();
@@ -72,6 +79,7 @@ public class RegistroActivity extends AppCompatActivity {
         }
 
     }
+    // Método para reniciar los campos
     public void reiniciarDatos(){
         nombre.setText(null);
         nif.setText(null);

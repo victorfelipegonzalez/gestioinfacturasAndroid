@@ -37,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
+    // Método para gestionar los datos recibidos y
+    // establecer la lista de opciones en relación al tipo de empleado
     public void modoVisualizacion(){
         empleado = (EmpleadoModel) getIntent().getSerializableExtra("EMPLEADO");
         if (empleado.getTipo_empleado().equals(EmpleadoModel.ROL_ADMINISTRADOR)){
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    //Método para ir a una activity dependiendo de la posicion pulsada
     public void irA(int position){
         if (position == 0) {
             anadirCliente();
@@ -87,11 +89,12 @@ public class MainActivity extends AppCompatActivity {
             informes();
         }
     }
-
+    //Método para inflar el menú
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu_options,menu);
         return true;
     }
+    // Método para comprobar la opción del menú que se ha selecionado
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.salir) {
            logout();

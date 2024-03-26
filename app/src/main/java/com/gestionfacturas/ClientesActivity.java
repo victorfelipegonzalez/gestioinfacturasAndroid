@@ -134,7 +134,7 @@ public class ClientesActivity extends AppCompatActivity {
 
         // Reconocer automáticamente teléfonos y correos electrónicos como enlaces
         Linkify.addLinks(textView, Linkify.PHONE_NUMBERS | Linkify.EMAIL_ADDRESSES);
-
+        // Generar un AlerDialog para mostrar los datos
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("CLIENTE")
                 .setView(textView)
@@ -147,17 +147,18 @@ public class ClientesActivity extends AppCompatActivity {
                 })
                 .show();
     }
-
+    //Método para volver a la activity anterior
     public void volverListaClientes(View v){
         finish();
     }
-
+    //Método que nos permite buscar un cliente con los datos introducidos en el campo busquedaClientes
     public void bucarCliente(View v){
         String busqueda = String.valueOf(busquedaClientes.getText());
         int contador = 0;
         if(busqueda.isEmpty()){
             Toast.makeText(this,"Debe introducir un nombre",Toast.LENGTH_SHORT).show();
         }else{
+            //Si encontramos cliente, mostramos los datos
             for(ClienteModel cliente: lista){
                 if(cliente.getNombre_cliente().equals(busqueda)){
                     mostrarCliente(cliente);

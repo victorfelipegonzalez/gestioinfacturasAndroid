@@ -32,28 +32,28 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout1"
-        android:layout_width="wrap_content"
+    android:id="@+id/textInputLayout1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="40dp"
+    app:boxStrokeColor="@color/black"
+    app:endIconMode="password_toggle"
+    app:endIconTint="@color/black"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+
+    <com.google.android.material.textfield.TextInputEditText
+
+        android:id="@+id/et_passwdInicio"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        app:boxStrokeColor="@color/black"
-        app:endIconMode="password_toggle"
-        app:endIconTint="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
-
-        <com.google.android.material.textfield.TextInputEditText
-
-            android:id="@+id/et_passwdInicio"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/contrasena"
-            android:inputType="textPassword"
-            app:hintTextColor="@color/black"
-            tools:layout_editor_absoluteX="64dp"
-            tools:layout_editor_absoluteY="369dp" />
-    </com.google.android.material.textfield.TextInputLayout>
+        android:hint="@string/contrasena"
+        android:inputType="textPassword"
+        app:hintTextColor="@color/black"
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="369dp" />
+</com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.button.MaterialButton

@@ -171,7 +171,7 @@ public class ClientesFragment extends Fragment {
         });
 
     }
-
+    // Método para buscar la lista de facturas del cliente selecionado
     public void comprobarCliente(){
         String busqueda = String.valueOf(nombreClientes.getText());
         int contador = 0;
@@ -189,6 +189,7 @@ public class ClientesFragment extends Fragment {
             }
         }
     }
+    // Método para volver a la activity anterior
     public void volverInformesClientes(){
         getActivity().finish();
     }
@@ -214,7 +215,7 @@ public class ClientesFragment extends Fragment {
                             fileOutputStream.write(pdfBytes);
                             fileOutputStream.close();
 
-                            // Abrir el archivo PDF en aplicacion predeterminada
+                            // Abrir el archivo PDF en la activity de visualización de PDF
                             Intent intent = new Intent(view.getContext(), VisualizarPDFActivity.class);
                             intent.putExtra("PDF",pdfFile);
                             startActivity(intent);

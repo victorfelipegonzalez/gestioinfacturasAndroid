@@ -23,11 +23,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AnadirEmpleadoActivity extends AppCompatActivity {
-    EmpleadoModel empleado;
-    EditText correo;
-    Button guardar,volver;
-    String[] lista;
-    Spinner spinner;
+    private EmpleadoModel empleado;
+    private EditText correo;
+    private Button guardar,volver;
+    private String[] lista;
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +48,11 @@ public class AnadirEmpleadoActivity extends AppCompatActivity {
             actualizarEmpleado();
         }
     }
-
+    // Método para volver a la activity anterior
     public void volverAnadirEmpleado(View v){
         finish();
     }
+    //Método para validar los datos
     public boolean comprobarDatos(){
         if(correo.getText().toString().isEmpty()){
             Toast.makeText(this,"Debe introducir un correo",Toast.LENGTH_SHORT).show();
@@ -65,9 +66,12 @@ public class AnadirEmpleadoActivity extends AppCompatActivity {
             }
         }
     }
+    //Método para validar el patrón de email
     private boolean isValidEmail(CharSequence email) {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
+
+    //Método para actualizar los datos del empleado
     private void actualizarEmpleado(){
         ApiService apiService = APIConnection.getApiService();
         EmpleadoModel empleadoActualizado = new EmpleadoModel();

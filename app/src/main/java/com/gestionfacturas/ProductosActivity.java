@@ -34,17 +34,18 @@ public class ProductosActivity extends AppCompatActivity {
         precio = findViewById(R.id.et_precio_producto);
         producto = (ProductoModel) getIntent().getSerializableExtra("PRODUCTO");
     }
-
+    //Método para volver a la activity anterior
     public void volverProductos(View v){
         finish();
     }
-
+    //Método que llama al metodo de guardar producto
+    // si los campos han sido validados
     public void guardarProducto(View v){
         if(comprobarCampos()){
             guardarProducto();
         }
     }
-
+    // Método para validar los campos
     public boolean comprobarCampos(){
         if (descripcion.getText().toString().isEmpty()) {
             Toast.makeText(this, "Debes introducir una\ndescripción del producto", Toast.LENGTH_SHORT).show();
@@ -58,6 +59,7 @@ public class ProductosActivity extends AppCompatActivity {
             return true;
         }
     }
+    // Método para reiniciar los datos de los campos
     public void reiniciarCampos(){
         descripcion.setText(null);
         precio.setText(null);

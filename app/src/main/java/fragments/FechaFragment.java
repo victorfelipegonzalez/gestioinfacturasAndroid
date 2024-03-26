@@ -76,6 +76,7 @@ public class FechaFragment extends Fragment {
 
         return view;
     }
+    // Método para volver a la activity anterior
     public void volverFecha(){
         getActivity().finish();
     }
@@ -102,7 +103,7 @@ public class FechaFragment extends Fragment {
                             fileOutputStream.write(pdfBytes);
                             fileOutputStream.close();
 
-                            // Abrir el archivo PDF en aplicacion predeterminada
+                            // Abrir el archivo PDF en la activity de visualización de PDF
                             Intent intent = new Intent(view.getContext(), VisualizarPDFActivity.class);
                             intent.putExtra("PDF",pdfFile);
                             startActivity(intent);
@@ -146,7 +147,7 @@ public class FechaFragment extends Fragment {
                             fileOutputStream.write(pdfBytes);
                             fileOutputStream.close();
 
-                            // Abrir el archivo PDF en aplicacion predeterminada
+                            // Abrir el archivo PDF en la activity de visualización de PDF
                             Intent intent = new Intent(view.getContext(), VisualizarPDFActivity.class);
                             intent.putExtra("PDF",pdfFile);
                             startActivity(intent);

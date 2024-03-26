@@ -119,7 +119,7 @@ public class EmpleadosFragment extends Fragment {
                             fileOutputStream.write(pdfBytes);
                             fileOutputStream.close();
 
-                            // Abrir el archivo PDF en aplicacion predeterminada
+                            // Abrir el archivo PDF en la activity de visualización de PDF
                             Intent intent = new Intent(view.getContext(), VisualizarPDFActivity.class);
                             intent.putExtra("PDF",pdfFile);
                             startActivity(intent);
@@ -228,6 +228,7 @@ public class EmpleadosFragment extends Fragment {
                 }
             });
     }
+    // Método para obtener la lista de facturas que ha realizado el empleado selecionado
     public void comprobarEmpleado(){
         String busqueda = String.valueOf(nombreEmpleados.getText());
         int contador = 0;
@@ -246,6 +247,7 @@ public class EmpleadosFragment extends Fragment {
             }
         }
     }
+    // Método para volver a la activity anterior
     public void volverInformesEmpleados(){
         getActivity().finish();
     }
@@ -271,7 +273,7 @@ public class EmpleadosFragment extends Fragment {
                             fileOutputStream.write(pdfBytes);
                             fileOutputStream.close();
 
-                            // Abrir el archivo PDF en aplicacion predeterminada
+                            // Abrir el archivo PDF en la activity de visualización de PDF
                             Intent intent = new Intent(view.getContext(), VisualizarPDFActivity.class);
                             intent.putExtra("PDF",pdfFile);
                             startActivity(intent);

@@ -44,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         gson = new Gson();
         empleado= new EmpleadoModel();
     }
+    // Método que llama al metodo de login si los campos han sido validados
     public void iniciarSesion(View v){
         if(comprobarDatos()){
             String emailLower = String.valueOf(emailInicio.getText()).toLowerCase();
@@ -52,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
     }
     // Método para entrar en la aplicación
     public void loginUser(String email, String passwd){
-        // Comprobamos credenciales de acceso
+        // Comprobamos credenciales de acceso en firebase
         mAuth.signInWithEmailAndPassword(email,passwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -69,15 +70,17 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
+    // Método que nos envia a la activity de registro
     public void registrarse(View view) {
         reiniciarDatos();
         startActivity(new Intent(this, RegistroActivity.class));
     }
+    // Método que nos envia a la activity de registro de empleados
     public void registrarEmpleado(View v) {
         reiniciarDatos();
         startActivity(new Intent(this, RegistroEmpleadoActivity.class));
     }
+    //Método para validar los campos
     public boolean comprobarDatos(){
         if(emailInicio.getText().toString().isEmpty()){
             Toast.makeText(this,"Debe introducir un email",Toast.LENGTH_SHORT).show();
@@ -94,12 +97,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
+    // Método para reiniciar los campos
     public void reiniciarDatos(){
         emailInicio.setText(null);
         passwdInicio.setText(null);
         emailInicio.setHint(getResources().getString(R.string.correo_electronico));
         passwdInicio.setHint(getResources().getString(R.string.contrasena));
     }
+    // Método que nos devuelve un empleado a partir del email obtenido
     public void obtenerEmpleado(){
         ApiService apiService = APIConnection.getApiService();
         String emailEntrar = String.valueOf(emailInicio.getText()).toLowerCase();
@@ -114,12 +119,14 @@ public class LoginActivity extends AppCompatActivity {
                                 // Obtener los datos de la respuesta obtenida por el servidor
                                 String stringEmpleado= gson.toJson(responseModel.getData());
                                 EmpleadoModel empleadoDevuelto = gson.fromJson(stringEmpleado, EmpleadoModel.class);
+                                // Establecemos al empleado que hemos recibido en nuestra variable
                                 empleado = empleadoDevuelto;
+                                // Enviamos el empleado recibido a la siguiente activity
                                 Intent intent =new Intent(LoginActivity.this, MainActivity.class);
                                 intent.putExtra("EMPLEADO",empleado);
                                 startActivity(intent);
                                 reiniciarDatos();
-                                Toast.makeText(LoginActivity.this,"Bienvenido",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this,"Bienvenido "+empleado.getNombre_empleado(),Toast.LENGTH_SHORT).show();
                             } else {
                                 // Manejar la respuesta exitosa pero sin datos o con un código de error
                                 Toast.makeText(LoginActivity.this, responseModel.getMessage(), Toast.LENGTH_SHORT).show();
