@@ -45,9 +45,10 @@ public class MainActivity extends AppCompatActivity {
             titulos= new String[]{getResources().getString(R.string.anadir_nclliente),
                     getResources().getString(R.string.informaci_n_de_clientes),
                     getResources().getString(R.string.generar_factura),
-                    getResources().getString(R.string.anadir_nproducto),
+                    getResources().getString(R.string.informes_de_nfacturacion),
                     getResources().getString(R.string.anadir_empleado_main),
-                    getResources().getString(R.string.informes_de_nfacturacion)};
+                    getResources().getString(R.string.anadir_nproducto)
+                    };
             images= new int[]{R.drawable.anadircliente,
                     R.drawable.clientes,
                     R.drawable.iconoaplicacion,
@@ -59,10 +60,12 @@ public class MainActivity extends AppCompatActivity {
         }else {
             titulos = new String[]{getResources().getString(R.string.anadir_nclliente),
                     getResources().getString(R.string.informaci_n_de_clientes),
-                    getResources().getString(R.string.generar_factura)};
+                    getResources().getString(R.string.generar_factura),
+                    getResources().getString(R.string.informes_de_nfacturacion)};
             images = new int[]{R.drawable.anadircliente,
                     R.drawable.clientes,
-                    R.drawable.iconoaplicacion};
+                    R.drawable.iconoaplicacion,
+                    R.drawable.informes};
             AdapterPersonalizado adapter = new AdapterPersonalizado(this, images, titulos);
             panel.setAdapter(adapter);
         }
@@ -82,11 +85,11 @@ public class MainActivity extends AppCompatActivity {
         } else if (position == 2) {
             facturas();
         }else if(position == 3){
-            productos();
+            informes();
         }else if (position == 4) {
             anadirEmpleado();
         }else if (position == 5) {
-            informes();
+            productos();
         }
     }
     //Método para inflar el menú
@@ -104,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
     // Método para ir a lista de clientes
     public void listaClientes(){
         Intent intent =new Intent(this, ClientesActivity.class);
+        intent.putExtra("EMPLEADO",empleado);
         intent.putExtra("IDEMPRESA",empleado.getId_empresa());
         startActivity(intent);
     }
@@ -147,6 +151,5 @@ public class MainActivity extends AppCompatActivity {
     public void logout() {
         mAuth.signOut();
         finish();
-        startActivity(new Intent(this,LoginActivity.class));
     }
 }

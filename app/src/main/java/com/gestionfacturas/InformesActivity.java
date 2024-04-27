@@ -24,26 +24,42 @@ public class InformesActivity extends AppCompatActivity {
         TabAdapter tabAdapter = new TabAdapter(this,empleado.getId_empresa());
         viewPager.setAdapter(tabAdapter);
         // Creamos los tabs
-        new TabLayoutMediator(tabLayout, viewPager,
-                (tab, position) -> {
-                    switch (position) {
-                        case 0:
-                            tab.setText(R.string.clientes);
-                            tab.setIcon(R.drawable.clienteicon);
-                            break;
-                        case 1:
-                            tab.setText(R.string.empleados);
-                            tab.setIcon(R.drawable.empleadoicon);
-                            break;
-                        case 2:
-                            tab.setText(R.string.fecha);
-                            tab.setIcon(R.drawable.calendario);
-                            break;
-                        default:
-                            break;
+        if(empleado.getTipo_empleado().equals(EmpleadoModel.ROL_ADMINISTRADOR)){
+            new TabLayoutMediator(tabLayout, viewPager,
+                    (tab, position) -> {
+                        switch (position) {
+                            case 0:
+                                tab.setText(R.string.clientes);
+                                tab.setIcon(R.drawable.clienteicon);
+                                break;
+                            case 1:
+                                tab.setText(R.string.empleados);
+                                tab.setIcon(R.drawable.empleadoicon);
+                                break;
+                            case 2:
+                                tab.setText(R.string.fecha);
+                                tab.setIcon(R.drawable.calendario);
+                                break;
+                            default:
+                                break;
+                        }
                     }
-                }
-        ).attach();
+            ).attach();
+        }else{
+            new TabLayoutMediator(tabLayout, viewPager,
+                    (tab, position) -> {
+                        switch (position) {
+                            case 0:
+                                tab.setText(R.string.clientes);
+                                tab.setIcon(R.drawable.clienteicon);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+            ).attach();
+        }
+
     }
 
 

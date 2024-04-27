@@ -93,6 +93,7 @@
         app:cornerRadius="5dp"
         app:icon="@drawable/volver"
         app:iconSize="30dp"
+        app:strokeColor="@color/black"
         app:iconTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

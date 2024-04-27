@@ -58,4 +58,5 @@
     <string name="iniciar_sesi_n">INICIAR SESIÓN</string>
     <string name="mostrar_informe_anual_clientes">MOSTRAR INFORME ANUAL CLIENTES</string>
     <string name="estadisticas_empleados">ESTADISTICAS EMPLEADOS</string>
+    <string name="editar">editar</string>
 </resources>

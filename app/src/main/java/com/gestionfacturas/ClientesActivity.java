@@ -1,9 +1,11 @@
 package com.gestionfacturas;
 
 import com.gestionfacturas.api.APIConnection;
+import com.gestionfacturas.models.EmpleadoModel;
 import com.google.gson.Gson;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
@@ -36,6 +38,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ClientesActivity extends AppCompatActivity {
+    private static final int REQUEST_CODE = 1;
     private List<ClienteModel> lista;
     private Button volver;
     private AutoCompleteTextView busquedaClientes;
@@ -44,6 +47,9 @@ public class ClientesActivity extends AppCompatActivity {
     private long id_empresa;
     private ArrayList<String> nombreClientes;
     private ImageButton buscar;
+    private AlertDialog.Builder builder;
+    private EmpleadoModel empleado;
+    private ArrayAdapter<String> nombres;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +59,7 @@ public class ClientesActivity extends AppCompatActivity {
         busquedaClientes = findViewById(R.id.et_nombreClienteFactura);
         buscar = findViewById(R.id.ib_buscar_cliente);
         nombreClientes = new ArrayList<>();
+        empleado = (EmpleadoModel) getIntent().getSerializableExtra("EMPLEADO");
         id_empresa = getIntent().getLongExtra("IDEMPRESA",0);
         obtenerListaClientes();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -61,8 +68,8 @@ public class ClientesActivity extends AppCompatActivity {
                     mostrarCliente(lista.get(position));
             }
         });
-        ArrayAdapter<String> nombres = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line,nombreClientes);
-        busquedaClientes.setAdapter(nombres);
+
+
     }
 
     // Método para rellenar la lista de clientes
@@ -84,9 +91,12 @@ public class ClientesActivity extends AppCompatActivity {
                             // Convertir el array a una lista
                             List<ClienteModel> datos = Arrays.asList(clienteArray);
                             lista = datos;
+                            nombreClientes = new ArrayList<>();
                             for(ClienteModel cliente: datos) {
                                 nombreClientes.add(cliente.getNombre_cliente());
                             }
+                            nombres = new ArrayAdapter<>(ClientesActivity.this, android.R.layout.simple_dropdown_item_1line,nombreClientes);
+                            busquedaClientes.setAdapter(nombres);
                             // Actualizar la lista de clientes con los datos obtenidos
                             ArrayAdapter adapter = new ArrayAdapter<>(ClientesActivity.this, android.R.layout.simple_list_item_1,datos);
                             listView.setAdapter(adapter);
@@ -130,18 +140,35 @@ public class ClientesActivity extends AppCompatActivity {
         TextView textView = new TextView(this);
         textView.setText(mensaje);
         textView.setTextSize(16);
+        textView.setPadding(5, 5, 5, 5);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
 
         // Reconocer automáticamente teléfonos y correos electrónicos como enlaces
         Linkify.addLinks(textView, Linkify.PHONE_NUMBERS | Linkify.EMAIL_ADDRESSES);
         // Generar un AlerDialog para mostrar los datos
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder = new AlertDialog.Builder(this);
         builder.setTitle("CLIENTE")
                 .setView(textView)
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // Cierra el diálogo
+                        dialog.dismiss();
+                    }
+                })/*.setNegativeButton("Borrar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Mostrar mensaje de confirmación para borrar el cliente
+                        confirmarBorradoCliente(cliente);
+                        dialog.dismiss();
+                    }
+                })*/.setNeutralButton("Editar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Abrir la actividad o fragmento de edición de cliente
+                        // Pasa los detalles del cliente actual como argumentos
+                        actualizarCliente(cliente);
                         dialog.dismiss();
                     }
                 })
@@ -167,6 +194,78 @@ public class ClientesActivity extends AppCompatActivity {
             }
             if(contador == 0){
                 Toast.makeText(this,"Cliente no encontrado",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    private void confirmarBorradoCliente(ClienteModel cliente) {
+        AlertDialog.Builder confirmBuilder = new AlertDialog.Builder(this);
+        confirmBuilder.setTitle("Confirmar borrado")
+                .setMessage("¿Estás seguro de que deseas borrar este cliente?")
+                .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Eliminar el cliente de la lista y actualizar la vista
+                        borrarCliente(cliente.getId_cliente());
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
+    }
+    //Método para borrar cliente
+    public void borrarCliente(long id){
+        // Establecer la conexión
+        ApiService apiService = APIConnection.getApiService();
+        Call<ResponseModel> call = apiService.borrarCliente(id);
+        call.enqueue(new Callback<ResponseModel>() {
+            @Override
+            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                if (response.isSuccessful()) {
+                    ResponseModel responseModel = response.body();
+                    if (responseModel != null && responseModel.getSuccess() == 0) {
+                        Toast.makeText(ClientesActivity.this, responseModel.getMessage(), Toast.LENGTH_SHORT).show();
+                        obtenerListaClientes();
+                    }else {
+                        // Manejar la respuesta exitosa pero sin datos o con un código de error
+                        try {
+                            String errorBody = response.errorBody().string();
+                            Log.e("ERROR","Error en la respuesta: "+ errorBody);
+                            Toast.makeText(ClientesActivity.this, responseModel.getMessage(), Toast.LENGTH_SHORT).show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            Toast.makeText(ClientesActivity.this, "Servidor sin respuesta", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseModel> call, Throwable t) {
+
+            }
+        });
+    }
+    //Método para ir a Activity para añadir cliente
+    public void actualizarCliente(ClienteModel clienteModel){
+        Intent intent = new Intent(this, RegistroClienteActivity.class);
+        intent.putExtra("CLIENTE",clienteModel);
+        intent.putExtra("EMPLEADO",empleado);
+        startActivityForResult(intent,REQUEST_CODE);
+    }
+    //Método para borrar cliente
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                obtenerListaClientes();
+
             }
         }
     }

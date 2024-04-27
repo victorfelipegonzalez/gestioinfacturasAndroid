@@ -28,6 +28,12 @@ public class RegistroClienteActivity extends AppCompatActivity {
         nif = findViewById(R.id.et_nifCliente);
         cliente = (ClienteModel) getIntent().getSerializableExtra("CLIENTE");
         empleado = (EmpleadoModel) getIntent().getSerializableExtra("EMPLEADO");
+        if(cliente.getId_cliente()>0){
+            nombre.setText(cliente.getNombre_cliente());
+            nif.setText(cliente.getNif_cliente());
+            telefono.setText(String.valueOf(cliente.getTelefono_cliente()));
+            correo.setText(cliente.getCorreo_cliente());
+        }
     }
     //Método que nos envia a la activity de registro dirección cliente
     // si los  datos son validados
@@ -37,7 +43,7 @@ public class RegistroClienteActivity extends AppCompatActivity {
             cliente.setNif_cliente(String.valueOf(nif.getText()).toLowerCase());
             cliente.setTelefono_cliente((Integer.valueOf(String.valueOf(telefono.getText()))));
             cliente.setCorreo_cliente(String.valueOf(correo.getText()).toLowerCase());
-            reiniciarDatos();
+            //reiniciarDatos();
             Intent intent = new Intent(this, RegistroDireccionClienteActivity.class);
             intent.putExtra("CLIENTE",cliente);
             intent.putExtra("EMPLEADO",empleado);
@@ -101,6 +107,8 @@ public class RegistroClienteActivity extends AppCompatActivity {
 
         if (requestCode == REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
+                Intent intent = new Intent();
+                setResult(RESULT_OK, intent);
                 finish();
             }
         }

@@ -16,6 +16,8 @@ import com.gestionfacturas.models.ClienteModel;
 import com.gestionfacturas.models.EmpleadoModel;
 import com.gestionfacturas.models.ResponseModel;
 
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,12 +39,23 @@ public class RegistroDireccionClienteActivity extends AppCompatActivity {
         pais = findViewById(R.id.et_paisCliente);
         cliente = (ClienteModel) getIntent().getSerializableExtra("CLIENTE");
         empleado = (EmpleadoModel) getIntent().getSerializableExtra("EMPLEAD");
+        if(cliente.getId_cliente() > 0){
+            direccion.setText(cliente.getDireccion_cliente());
+            cp.setText(String.valueOf(cliente.getCp_cliente()));
+            ciudad.setText(cliente.getCiudad_cliente());
+            pais.setText(cliente.getPais_cliente());
+        }
     }
     //Método que envia el cliente a la API
     // si los  datos son validados
     public void guardarDatosCliente(View v) {
         if(comprobarDatos()){
-            insertarCliente(cliente);
+            if(cliente.getId_cliente() > 0){
+                actualizarCliente(cliente);
+            }else{
+                insertarCliente(cliente);
+            }
+
         }
     }
     // Validar los campos
@@ -68,7 +81,7 @@ public class RegistroDireccionClienteActivity extends AppCompatActivity {
                 cliente.setCp_cliente(Integer.valueOf(String.valueOf(cp.getText())));
                 cliente.setCiudad_cliente(String.valueOf(ciudad.getText()));
                 cliente.setPais_cliente(String.valueOf(pais.getText()));
-                reiniciarDatos();
+                //reiniciarDatos();
                 return true;
             }
         }
@@ -125,6 +138,41 @@ public class RegistroDireccionClienteActivity extends AppCompatActivity {
             public void onFailure(Call<ResponseModel> call, Throwable t) {
                 // Si hay error en la llamada
                 Toast.makeText(RegistroDireccionClienteActivity.this,"Error al conectarse con el servidor", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    public void actualizarCliente(ClienteModel clienteModel){
+        // Establecer la conexión
+        ApiService apiService = APIConnection.getApiService();
+        Call<ResponseModel> call = apiService.actualizarCliente(clienteModel);
+        call.enqueue(new Callback<ResponseModel>() {
+            @Override
+            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                if (response.isSuccessful()) {
+                    ResponseModel responseModel = response.body();
+                    if (responseModel != null && responseModel.getSuccess() == 0) {
+                        Intent intent = new Intent();
+                        setResult(RESULT_OK, intent);
+                        finish();
+                        Toast.makeText(RegistroDireccionClienteActivity.this, responseModel.getMessage(), Toast.LENGTH_SHORT).show();
+                    }else {
+                        // Manejar la respuesta exitosa pero sin datos o con un código de error
+                        try {
+                            String errorBody = response.errorBody().string();
+                            Log.e("ERROR","Error en la respuesta: "+ errorBody);
+                            Toast.makeText(RegistroDireccionClienteActivity.this, responseModel.getMessage(), Toast.LENGTH_SHORT).show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            Toast.makeText(RegistroDireccionClienteActivity.this, "Servidor sin respuesta", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseModel> call, Throwable t) {
+
             }
         });
     }

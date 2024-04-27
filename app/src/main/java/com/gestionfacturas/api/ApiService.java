@@ -20,6 +20,12 @@ public interface ApiService {
     @POST("/api/clientes/insertar")
     Call<ResponseModel> insertarCliente(@Body ClienteModel nuevoCiente);
 
+    @POST("/api/clientes/borrar/{id_cliente}")
+    Call<ResponseModel> borrarCliente(@Path("id_cliente") long id_cliente);
+
+    @POST("/api/clientes/actualizar")
+    Call<ResponseModel> actualizarCliente(@Body ClienteModel clienteModel);
+
     @POST("/api/empresas/insertar")
     Call<ResponseModel> insertarEmpresa(@Body EmpresaModel nuevaEmpresa);
 

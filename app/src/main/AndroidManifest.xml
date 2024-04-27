@@ -12,11 +12,20 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/gf_icon"
         android:label="Factur\nExpress"
-        android:roundIcon="@mipmap/gf_icon_round"
         android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/gf_icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GestionFacturas"
         tools:targetApi="31">
+        <activity
+            android:name=".ActualizarDicreccionClienteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActualizarClienteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActualizarUsuarioActivity"
+            android:exported="false" />
         <activity
             android:name=".VisualizarPDFActivity"
             android:exported="false" />
