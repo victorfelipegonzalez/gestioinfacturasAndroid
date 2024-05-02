@@ -127,21 +127,21 @@ public class ClientesActivity extends AppCompatActivity {
     }
     // Método para mostrar la información de un cliente
     private void mostrarCliente(ClienteModel cliente) {
-        String mensaje = "Nombre: "+cliente.getNombre_cliente()+
-                        "\nDNI: "+cliente.getNif_cliente()+
-                        "\nTeléfono: "+cliente.getTelefono_cliente()+
-                        "\nCorreo: "+cliente.getCorreo_cliente()+
-                        "\nDirección: "+cliente.getDireccion_cliente()+
-                        "\nCiudad: "+cliente.getCiudad_cliente()+
-                        "\nCP: "+cliente.getCp_cliente()+
-                        "\nPais: "+cliente.getPais_cliente();
+        String mensaje = "  Nombre: "+cliente.getNombre_cliente()+
+                        "\n  DNI: "+cliente.getNif_cliente()+
+                        "\n  Teléfono: "+cliente.getTelefono_cliente()+
+                        "\n  Correo: "+cliente.getCorreo_cliente()+
+                        "\n  Dirección: "+cliente.getDireccion_cliente()+
+                        "\n  Ciudad: "+cliente.getCiudad_cliente()+
+                        "\n  CP: "+cliente.getCp_cliente()+
+                        "\n  Pais: "+cliente.getPais_cliente();
 
         // Se crea un TextView para mostrar el mensaje
         TextView textView = new TextView(this);
         textView.setText(mensaje);
         textView.setTextSize(16);
-        textView.setPadding(5, 5, 5, 5);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
+        textView.setPadding(10, 10, 10, 10);
 
         // Reconocer automáticamente teléfonos y correos electrónicos como enlaces
         Linkify.addLinks(textView, Linkify.PHONE_NUMBERS | Linkify.EMAIL_ADDRESSES);
@@ -149,6 +149,7 @@ public class ClientesActivity extends AppCompatActivity {
 
         builder = new AlertDialog.Builder(this);
         builder.setTitle("CLIENTE")
+                .setIcon(R.drawable.clientes)
                 .setView(textView)
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
@@ -258,8 +259,6 @@ public class ClientesActivity extends AppCompatActivity {
         intent.putExtra("EMPLEADO",empleado);
         startActivityForResult(intent,REQUEST_CODE);
     }
-    //Método para borrar cliente
-
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE) {

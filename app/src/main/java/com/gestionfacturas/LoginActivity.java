@@ -126,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
                                 intent.putExtra("EMPLEADO",empleado);
                                 startActivity(intent);
                                 reiniciarDatos();
-                                Toast.makeText(LoginActivity.this,"Bienvenido "+empleado.getNombre_empleado(),Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(LoginActivity.this,"Bienvenido "+empleado.getNombre_empleado(),Toast.LENGTH_SHORT).show();
                             } else {
                                 // Manejar la respuesta exitosa pero sin datos o con un código de error
                                 Toast.makeText(LoginActivity.this, responseModel.getMessage(), Toast.LENGTH_SHORT).show();

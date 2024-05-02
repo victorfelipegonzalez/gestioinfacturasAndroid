@@ -126,6 +126,9 @@ public class RegistroEmailActivity extends AppCompatActivity {
                         if(responseModel.getSuccess()==0){
                             crearUsuario(emailEmpresa.toLowerCase(),passwordEmpresa);
                             Toast.makeText(RegistroEmailActivity.this, responseModel.getMessage(), Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent();
+                            setResult(RESULT_OK, intent);
+                            finish();
                         }else{
                             Toast.makeText(RegistroEmailActivity.this, responseModel.getMessage(), Toast.LENGTH_SHORT).show();
                         }

@@ -52,7 +52,7 @@ public class RegistroDireccionActivity extends AppCompatActivity {
         if(comprobarDatos()){
             Intent intent = new Intent(this,RegistroEmailActivity.class);
             intent.putExtra("EMPRESA",empresa);
-            startActivityForResult(intent,RESULT_OK);
+            startActivityForResult(intent,REQUEST_CODE);
         }
 
     }

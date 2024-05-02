@@ -184,7 +184,9 @@ public class FechaFragment extends Fragment {
                         ArrayAdapter<Integer> adapter = new ArrayAdapter<>(view.getContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,anios);
                         spAnios.setAdapter(adapter);
                     }else{
-                        Toast.makeText(view.getContext(), "Error al mostrar los años de facturación", Toast.LENGTH_SHORT).show();
+                        mostrarInformeAnualClientes.setVisibility(View.INVISIBLE);
+                        mostrarInformeAnual.setVisibility(View.INVISIBLE);
+                        //Toast.makeText(view.getContext(), "Error al mostrar los años de facturación", Toast.LENGTH_SHORT).show();
                     }
                 }else{
                     Toast.makeText(view.getContext(), "No hay datos del año seleccionado", Toast.LENGTH_SHORT).show();
