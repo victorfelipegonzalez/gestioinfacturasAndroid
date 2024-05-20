@@ -41,7 +41,7 @@ public class CrearFacturaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_factura);
         volver = findViewById(R.id.bt_volver_crear_factura);
-        siguiente = findViewById(R.id.bt_anadir_cliente_factura);
+        siguiente = findViewById(R.id.bt_siguiente_actualizar);
         buscarCliente = findViewById(R.id.et_nombreClienteFactura);
         empleado = (EmpleadoModel) getIntent().getSerializableExtra("EMPLEADO");
         gson = new Gson();

@@ -27,7 +27,7 @@
         app:strokeWidth="2dp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
+        android:id="@+id/tx_direccion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
@@ -60,7 +60,7 @@
         android:layout_marginTop="68dp"
         android:background="@drawable/lupa"
         android:contentDescription="@string/buscar_cliente"
-        app:layout_constraintStart_toEndOf="@+id/textInputLayout"
+        app:layout_constraintStart_toEndOf="@+id/tx_direccion"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TouchTargetSizeCheck" />
 
@@ -71,5 +71,5 @@
         android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/tx_direccion" />
 </androidx.constraintlayout.widget.ConstraintLayout>

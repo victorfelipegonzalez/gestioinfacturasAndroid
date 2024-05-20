@@ -20,12 +20,12 @@ public class RegistroDireccionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_direccion);
-        siguiente = findViewById(R.id.bt_registroDireccionEmpresa);
-        volver = findViewById(R.id.bt_volverRegistroDireccionEmpresa);
-        direccion = findViewById(R.id.et_direcionEmpresa);
-        cp = findViewById(R.id.et_cpEmpresa);
-        ciudad = findViewById(R.id.et_ciudadEmpresa);
-        pais = findViewById(R.id.et_paisEmpresa);
+        siguiente = findViewById(R.id.bt_DireccionEmpresa);
+        volver = findViewById(R.id.bt_volverDireccionEmpresa);
+        direccion = findViewById(R.id.et_DirecionEmpresa);
+        cp = findViewById(R.id.et_CpEmpresa);
+        ciudad = findViewById(R.id.et_CiudadEmpresa);
+        pais = findViewById(R.id.et_PaisEmpresa);
         empresa = (EmpresaModel) getIntent().getSerializableExtra("EMPRESA");
     }
     // Método que se queda a la espera de que se cierre la activity que hemos abierto desde
@@ -36,7 +36,9 @@ public class RegistroDireccionActivity extends AppCompatActivity {
 
         if (requestCode == REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
+                empresa = (EmpresaModel) getIntent().getSerializableExtra("EMPRESA");
                 Intent intent = new Intent();
+                intent.putExtra("EMPRESA",empresa);
                 setResult(RESULT_OK, intent);
                 finish();
             }

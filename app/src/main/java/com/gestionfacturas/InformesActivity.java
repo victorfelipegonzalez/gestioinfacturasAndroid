@@ -10,6 +10,8 @@ import com.gestionfacturas.models.EmpleadoModel;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
+
 public class InformesActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager2 viewPager;
@@ -18,6 +20,13 @@ public class InformesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_informes);
+        if (savedInstanceState != null) {
+            // Recupera los datos guardados del Bundle
+            int currentFragmentIndex = savedInstanceState.getInt("currentFragmentIndex");
+            // Muestra el primer fragmento si estaba visible anteriormente
+            viewPager.setCurrentItem(currentFragmentIndex);
+            // Puedes restaurar cualquier otro dato necesario aquí
+        }
         tabLayout = findViewById(R.id.contenedortabs);
         viewPager = findViewById(R.id.vp_tabs);
         empleado = (EmpleadoModel) getIntent().getSerializableExtra("EMPLEADO");
@@ -62,6 +71,11 @@ public class InformesActivity extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Guarda el índice del fragmento actual
+        outState.putInt("currentFragmentIndex", 1); // Aquí 1 representa el índice del segundo fragmento
+    }
 
 }

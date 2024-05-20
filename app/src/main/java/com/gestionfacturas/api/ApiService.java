@@ -12,6 +12,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ApiService {
@@ -28,6 +29,12 @@ public interface ApiService {
 
     @POST("/api/empresas/insertar")
     Call<ResponseModel> insertarEmpresa(@Body EmpresaModel nuevaEmpresa);
+
+    @PUT("/api/empresas")
+    Call<ResponseModel> actualizarEmpresa(@Body EmpresaModel empresa);
+
+    @GET("/api/empresas/{id_empresa}")
+    Call<ResponseModel> obtenerEmpresa(@Path("id_empresa") long id_empresa);
 
     @GET("/api/empleados/buscarCorreo/{correoEmpleado}")
     Call<ResponseModel> obtenerEmpleado(@Path("correoEmpleado") String correoEmpleado);

@@ -9,35 +9,30 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.gestionfacturas.models.EmpleadoModel;
 import com.gestionfacturas.models.EmpresaModel;
 
-public class RegistroActivity extends AppCompatActivity {
-    private Button siguiente,volver;
-    private EditText nombre,nif,telefono;
+public class ActualizarEmpresaActivity extends AppCompatActivity {
+    private EmpleadoModel empleado;
     private EmpresaModel empresa;
+    private Button siguiente,volver;
+    private EditText nombre,nif,telefono,correo;
     private static final int REQUEST_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro);
-        siguiente = findViewById(R.id.bt_siguienteDireccionResgistro);
-        volver = findViewById(R.id.bt_volverEmpresa);
+        setContentView(R.layout.activity_actualizar_empresa);
+        empleado = (EmpleadoModel) getIntent().getSerializableExtra("EMPLEADO");
+        empresa = (EmpresaModel) getIntent().getSerializableExtra("EMPRESA");
+        siguiente = findViewById(R.id.bt_siguiente_actualizar);
+        volver = findViewById(R.id.bt_volverActualizarEmpresa);
         nombre = findViewById(R.id.et_NombreEmpresa);
         nif = findViewById(R.id.et_nifEmpresa);
         telefono = findViewById(R.id.et_telefonoEmpresa);
-        empresa = new EmpresaModel();
+        correo = findViewById(R.id.et_correoEmpresa);
+        cargarDatos();
     }
 
-    //Método que nos envia a la activity de registro dirección
-    // si los  datos son validados
-    public void registroDireccion(View v){
-        if(comprobarDatos()){
-            Intent intent = new Intent(this, RegistroDireccionActivity.class);
-            intent.putExtra("EMPRESA",empresa);
-            startActivityForResult(intent, REQUEST_CODE);
-        }
-
-    }
     // Método que se queda a la espera de que se cierre la activity que hemos abierto desde
     // esta activity, comprueba el resultado obtenido y actua conforme a ello
     @Override
@@ -46,14 +41,17 @@ public class RegistroActivity extends AppCompatActivity {
 
         if (requestCode == REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
+                empleado = (EmpleadoModel) getIntent().getSerializableExtra("EMPLEADO");
+                empresa = (EmpresaModel) getIntent().getSerializableExtra("EMPRESA");
+                Intent intent  = new Intent();
+                intent.putExtra("EMPRESA",empresa);
+                intent.putExtra("EMPLEADO",empleado);
+                setResult(RESULT_OK, intent);
                 finish();
             }
         }
     }
-    //Método para volver a la activity anterior
-    public void volverInicio(View v){
-        finish();
-    }
+
     //Método para validar los datos
     public boolean comprobarDatos(){
         if(nombre.getText().toString().isEmpty()){
@@ -65,12 +63,15 @@ public class RegistroActivity extends AppCompatActivity {
         } else if (telefono.getText().toString().isEmpty()) {
             Toast.makeText(this,"Debe introducir un teléfono",Toast.LENGTH_SHORT).show();
             return false;
+        }else if (correo.getText().toString().isEmpty()) {
+            Toast.makeText(this,"Debe introducir un correo eléctonico",Toast.LENGTH_SHORT).show();
+            return false;
         }else {
             if(telefono.getText().toString().length() <= 9){
                 empresa.setNombreEmpresa(String.valueOf(nombre.getText()));
                 empresa.setNif(String.valueOf(nif.getText()).toLowerCase());
                 empresa.setTelefono(Integer.valueOf(String.valueOf(telefono.getText())));
-                reiniciarDatos();
+                empresa.setCorreo(String.valueOf(correo.getText()));
                 return true;
             }else{
                 Toast.makeText(this,"Número de teléfono\ndemasiado largo",Toast.LENGTH_SHORT).show();
@@ -79,13 +80,26 @@ public class RegistroActivity extends AppCompatActivity {
         }
 
     }
-    // Método para reniciar los campos
-    public void reiniciarDatos(){
-        nombre.setText(null);
-        nif.setText(null);
-        telefono.setText(null);
-        nombre.setHint(getResources().getString(R.string.nombre));
-        nif.setHint(getResources().getString(R.string.nif));
-        telefono.setHint(getResources().getString(R.string.telefono));
+    //Método para pasar a la siguiente activity después de comprobar los campos
+    public void actualizarDatosDireccion(View v){
+        if(comprobarDatos()){
+            Intent intent = new Intent(this, ActualizarDireccionEmpresaActivity.class);
+            intent.putExtra("EMPLEADO",empleado);
+            intent.putExtra("EMPRESA",empresa);
+            startActivityForResult(intent, REQUEST_CODE);
+        }
     }
+    //Método para volver a la activity anterior
+    public void volverActualizarDatos(View v){
+        finish();
+    }
+
+    //Método para cargar los datos de la empresa
+    public void cargarDatos(){
+        nombre.setText(empresa.getNombreEmpresa());
+        nif.setText(empresa.getNif());
+        telefono.setText(String.valueOf(empresa.getTelefono()));
+        correo.setText(empresa.getCorreo());
+    }
+
 }

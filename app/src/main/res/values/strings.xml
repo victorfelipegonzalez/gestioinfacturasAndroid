@@ -59,4 +59,6 @@
     <string name="mostrar_informe_anual_clientes">MOSTRAR INFORME ANUAL CLIENTES</string>
     <string name="estadisticas_empleados">ESTADISTICAS EMPLEADOS</string>
     <string name="editar">editar</string>
+    <string name="info_empresa">Info. Empresa</string>
+    <string name="actualizar_ndatos">ACTUALIZAR \nDATOS</string>
 </resources>

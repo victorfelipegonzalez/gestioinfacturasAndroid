@@ -8,7 +8,7 @@
     android:background="@drawable/fondo">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
+        android:id="@+id/tx_direccion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -42,7 +42,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout1"
+        android:id="@+id/tx_ciudad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -50,7 +50,7 @@
         app:endIconContentDescription="@string/nif"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+        app:layout_constraintTop_toBottomOf="@+id/tx_direccion">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_nifEmpresa"
@@ -64,7 +64,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/bt_anadir_cliente_factura"
+        android:id="@+id/bt_siguienteDireccionResgistro"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
@@ -75,13 +75,13 @@
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/tx_cp"
         app:strokeColor="@color/black"
         app:strokeWidth="2dp"
         tools:ignore="MissingConstraints" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/bt_volverDatosEmpresa"
+        android:id="@+id/bt_volverEmpresa"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -92,13 +92,13 @@
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_anadir_cliente_factura"
+        app:layout_constraintTop_toBottomOf="@+id/bt_siguienteDireccionResgistro"
         app:strokeColor="@color/black"
         app:strokeWidth="2dp"
         tools:ignore="MissingConstraints" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout2"
+        android:id="@+id/tx_cp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -106,7 +106,7 @@
         app:endIconContentDescription="@string/telefono"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout1">
+        app:layout_constraintTop_toBottomOf="@+id/tx_ciudad">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_telefonoEmpresa"
