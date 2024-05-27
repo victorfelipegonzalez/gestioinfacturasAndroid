@@ -67,7 +67,7 @@
         android:id="@+id/bt_siguienteDireccionResgistro"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="40dp"
         android:backgroundTint="@color/transparent"
         android:onClick="registroDireccion"
         android:text="@string/siguiente"
@@ -75,7 +75,7 @@
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tx_cp"
+        app:layout_constraintTop_toBottomOf="@+id/tx_correoEmpresa"
         app:strokeColor="@color/black"
         app:strokeWidth="2dp"
         tools:ignore="MissingConstraints" />
@@ -84,7 +84,7 @@
         android:id="@+id/bt_volverEmpresa"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:backgroundTint="@color/transparent"
         android:onClick="volverInicio"
         android:text="@string/volver"
@@ -119,4 +119,23 @@
             tools:layout_editor_absoluteY="369dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tx_correoEmpresa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:boxStrokeColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_cp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_correoInscripcionEmpresa"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/correo_electronico"
+            android:inputType="textEmailAddress"
+            app:hintTextColor="@color/black"
+            tools:layout_editor_absoluteX="64dp"
+            tools:layout_editor_absoluteY="369dp" />
+    </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

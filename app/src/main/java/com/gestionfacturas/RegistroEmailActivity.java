@@ -1,8 +1,5 @@
 package com.gestionfacturas;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,15 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.gestionfacturas.api.APIConnection;
 import com.gestionfacturas.api.ApiService;
 import com.gestionfacturas.models.EmpresaModel;
 import com.gestionfacturas.models.ResponseModel;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,13 +24,11 @@ public class RegistroEmailActivity extends AppCompatActivity {
     private Button registro,volver;
     private EditText email,passwd,confimPasswd,nombreUsuario;
     private EmpresaModel empresa;
-    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_email);
-        mAuth = FirebaseAuth.getInstance();
         registro = findViewById(R.id.bt_finRegistro);
         volver  = findViewById(R.id.bt_volverRegistroEmail);
         email = findViewById(R.id.et_correoEmpresa);
@@ -84,8 +76,9 @@ public class RegistroEmailActivity extends AppCompatActivity {
             if(passwd.getText().length() >= 6){
                 if(passwd.getText().toString().equals(confimPasswd.getText().toString())){
                     if(isValidEmail(String.valueOf(email.getText()))){
-                        empresa.setCorreo(String.valueOf(email.getText()));
+                        empresa.setCorreoJefe(String.valueOf(email.getText()));
                         empresa.setNombreJefe(String.valueOf(nombreUsuario.getText()));
+                        empresa.setPwd(String.valueOf(passwd.getText()));
                         return true;
                     }else{
                         Toast.makeText(this,"Correo electrónico erroneo",Toast.LENGTH_SHORT).show();
@@ -124,7 +117,6 @@ public class RegistroEmailActivity extends AppCompatActivity {
                     if (response.isSuccessful()&& response.body() != null) {
                         ResponseModel responseModel = response.body();
                         if(responseModel.getSuccess()==0){
-                            crearUsuario(emailEmpresa.toLowerCase(),passwordEmpresa);
                             Toast.makeText(RegistroEmailActivity.this, responseModel.getMessage(), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent();
                             setResult(RESULT_OK, intent);
@@ -148,22 +140,5 @@ public class RegistroEmailActivity extends AppCompatActivity {
         }
     }
 
-    //Método pare crear Usuario en FireBase
-    public void crearUsuario(String emailEmpresa,String passwordEmpresa){
-        //Creamos el usuario en FireBase
-        mAuth.createUserWithEmailAndPassword(emailEmpresa,passwordEmpresa).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                Intent intent = new Intent();
-                setResult(RESULT_OK, intent);
-                finish();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(RegistroEmailActivity.this,"Error al registrar usuario",Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
 }

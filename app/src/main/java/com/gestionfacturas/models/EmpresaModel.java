@@ -13,6 +13,8 @@ public class EmpresaModel implements Serializable {
     private String pais_empresa;
     private String correo;
     private String nombreJefe;
+    private String pwd;
+    private String correoJefe;
 
     public EmpresaModel() {
     }
@@ -95,5 +97,21 @@ public class EmpresaModel implements Serializable {
 
     public void setNombreJefe(String nombreJefe) {
         this.nombreJefe = nombreJefe;
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
+
+    public String getCorreoJefe() {
+        return correoJefe;
+    }
+
+    public void setCorreoJefe(String correoJefe) {
+        this.correoJefe = correoJefe;
     }
 }

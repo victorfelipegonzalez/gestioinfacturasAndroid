@@ -7,6 +7,7 @@
     tools:context=".RegistroClienteActivity"
     android:background="@drawable/fondo">
 
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
@@ -19,37 +20,91 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/et_nombreClienteFactura"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tx_nombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:ems="10"
-        android:hint="@string/nombre"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:textColorHint="@color/black"
+        app:boxStrokeColor="@color/black"
+        app:endIconContentDescription="@string/nombre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
 
-    <EditText
-        android:id="@+id/et_nifCliente"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_nombreClienteFactura"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/nombre"
+            android:inputType="textCapSentences"
+            app:hintTextColor="@color/black"
+            tools:layout_editor_absoluteX="64dp"
+            tools:layout_editor_absoluteY="369dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tx_nif"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/dni_nif"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:textColorHint="@color/black"
+        app:boxStrokeColor="@color/black"
+        app:endIconContentDescription="@string/nif"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_nombreClienteFactura" />
+        app:layout_constraintTop_toBottomOf="@+id/tx_nombre">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_nifCliente"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/nif"
+            android:inputType="textCapSentences"
+            app:hintTextColor="@color/black"
+            tools:layout_editor_absoluteX="64dp"
+            tools:layout_editor_absoluteY="369dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tx_telefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:boxStrokeColor="@color/black"
+        app:endIconContentDescription="@string/telefono"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_nif">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_telefonoCliente"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/telefono"
+            android:inputType="number"
+            app:hintTextColor="@color/black"
+            tools:layout_editor_absoluteX="64dp"
+            tools:layout_editor_absoluteY="369dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tx_correoCliente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:boxStrokeColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_telefono">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_correoCliente"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/correo_electronico"
+            android:inputType="textEmailAddress"
+            app:hintTextColor="@color/black"
+            tools:layout_editor_absoluteX="64dp"
+            tools:layout_editor_absoluteY="369dp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/bt_volverRegistroCliente"
@@ -82,37 +137,7 @@
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_correoCliente"
+        app:layout_constraintTop_toBottomOf="@+id/tx_correoCliente"
         tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/et_telefonoCliente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:hint="@string/telefono"
-        android:importantForAutofill="no"
-        android:inputType="number"
-        android:minHeight="48dp"
-        android:textColorHint="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_nifCliente" />
-
-    <EditText
-        android:id="@+id/et_correoCliente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:hint="@string/correo_electronico"
-        android:importantForAutofill="no"
-        android:inputType="textEmailAddress"
-        android:minHeight="48dp"
-        android:textColorHint="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_telefonoCliente" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

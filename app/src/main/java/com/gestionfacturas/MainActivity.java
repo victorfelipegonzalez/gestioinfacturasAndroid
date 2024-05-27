@@ -1,21 +1,19 @@
 package com.gestionfacturas;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
-import android.text.util.Linkify;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.gestionfacturas.adapters.AdapterPersonalizado;
 import com.gestionfacturas.api.APIConnection;
@@ -25,7 +23,6 @@ import com.gestionfacturas.models.EmpleadoModel;
 import com.gestionfacturas.models.EmpresaModel;
 import com.gestionfacturas.models.ProductoModel;
 import com.gestionfacturas.models.ResponseModel;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 
 import retrofit2.Call;
@@ -33,7 +30,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-    private FirebaseAuth mAuth;
     private EmpleadoModel empleado;
     private EmpresaModel empresa;
     private String[]titulos;
@@ -50,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         empleado = (EmpleadoModel) getIntent().getSerializableExtra("EMPLEADO");
         gson = new Gson();
-        mAuth = FirebaseAuth.getInstance();
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         panel = findViewById(R.id.gv_panel);
@@ -182,7 +177,6 @@ public class MainActivity extends AppCompatActivity {
     }
     // Método para salir e ir a la Activity Login
     public void logout() {
-        mAuth.signOut();
         finish();
     }
 

@@ -40,6 +40,8 @@ public interface ApiService {
     Call<ResponseModel> obtenerEmpleado(@Path("correoEmpleado") String correoEmpleado);
     @GET("/api/empleados/all/{id_empresa}")
     Call<ResponseModel> obtenerEmpleados(@Path("id_empresa") long id_empresa);
+    @GET("api/empleados/login/{email}/{pwd}")
+    Call<ResponseModel> login(@Path("email") String email, @Path("pwd") String pwd);
     @POST("/api/empleados/actualizarEmpleado")
     Call<ResponseModel> actualizarEmpleado(@Body EmpleadoModel empleadoActualizado);
     @POST("/api/empleados/insertar")

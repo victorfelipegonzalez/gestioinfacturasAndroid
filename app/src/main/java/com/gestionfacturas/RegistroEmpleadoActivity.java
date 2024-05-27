@@ -1,8 +1,5 @@
 package com.gestionfacturas;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -11,14 +8,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.gestionfacturas.api.APIConnection;
 import com.gestionfacturas.api.ApiService;
 import com.gestionfacturas.models.EmpleadoModel;
 import com.gestionfacturas.models.ResponseModel;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import retrofit2.Call;
@@ -34,7 +29,6 @@ public class RegistroEmpleadoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_empleado);
-        mAuth = FirebaseAuth.getInstance();
         volver = findViewById(R.id.bt_volverEmpleado);
         guardar = findViewById(R.id.bt_guardarDatosEmpleado);
         nombre = findViewById(R.id.et_nombreEmpleado);
@@ -55,8 +49,8 @@ public class RegistroEmpleadoActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             ResponseModel responseModel = response.body();
                             if(responseModel.getSuccess()==0){
-                                String correoLower = String.valueOf(correo.getText()).toLowerCase();
-                                registrarDatos(correoLower,String.valueOf(passwd.getText()),responseModel);
+                                Toast.makeText(RegistroEmpleadoActivity.this, responseModel.getMessage(), Toast.LENGTH_SHORT).show();
+                                finish();
                             }else{
                                 Toast.makeText(RegistroEmpleadoActivity.this, responseModel.getMessage(), Toast.LENGTH_SHORT).show();
                             }
@@ -109,6 +103,7 @@ public class RegistroEmpleadoActivity extends AppCompatActivity {
                         empleado.setNombre_empleado(String.valueOf(nombre.getText()));
                         empleado.setCorreo(String.valueOf(correo.getText()));
                         empleado.setTipo_empleado(EmpleadoModel.ROL_EMPLEADO);
+                        empleado.setPassword(String.valueOf(passwd.getText()));
                         return true;
                     }else{
                         Toast.makeText(this,"Correo incorrecto",Toast.LENGTH_SHORT).show();
@@ -123,22 +118,6 @@ public class RegistroEmpleadoActivity extends AppCompatActivity {
                 }
             }
         }
-    }
-
-    // Método para registrar los datos en FIreBase
-    public void registrarDatos(String emailEmpleado, String passwordEmpleado,ResponseModel responseModel){
-        mAuth.createUserWithEmailAndPassword(emailEmpleado,passwordEmpleado).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                finish();
-                Toast.makeText(RegistroEmpleadoActivity.this, responseModel.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(RegistroEmpleadoActivity.this,"Error al registrar",Toast.LENGTH_SHORT).show();
-            }
-        });
     }
     // Método para volver a la activity anterior
     public void volverRegistroEmpleado(View v){

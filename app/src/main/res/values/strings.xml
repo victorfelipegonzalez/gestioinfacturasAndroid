@@ -61,4 +61,5 @@
     <string name="editar">editar</string>
     <string name="info_empresa">Info. Empresa</string>
     <string name="actualizar_ndatos">ACTUALIZAR \nDATOS</string>
+    <string name="salir">Salir</string>
 </resources>

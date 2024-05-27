@@ -19,61 +19,93 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/et_direccionCliente"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tx_direccion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:ems="10"
-        android:hint="@string/direccion"
-        android:inputType="text"
-        android:minHeight="48dp"
+        app:boxStrokeColor="@color/black"
+        app:endIconContentDescription="@string/nombre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:textColorHint="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6">
 
-    <EditText
-        android:id="@+id/et_cpCliente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:hint="@string/codigo_postal"
-        android:inputType="number"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColorHint="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_direccionCliente" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_direccionCliente"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/direccion"
+            android:inputType="textCapSentences"
+            app:hintTextColor="@color/black"
+            tools:layout_editor_absoluteX="64dp"
+            tools:layout_editor_absoluteY="369dp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/et_ciudadCliente"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tx_ciudad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:ems="10"
-        android:hint="@string/ciudad"
-        android:inputType="text"
-        android:minHeight="48dp"
+        app:boxStrokeColor="@color/black"
+        app:endIconContentDescription="@string/ciudad"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textColorHint="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_cpCliente" />
+        app:layout_constraintTop_toBottomOf="@+id/tx_direccion">
 
-    <EditText
-        android:id="@+id/et_paisCliente"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_ciudadCliente"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/ciudad"
+            android:inputType="textCapSentences"
+            app:hintTextColor="@color/black"
+            tools:layout_editor_absoluteX="64dp"
+            tools:layout_editor_absoluteY="369dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tx_cp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:ems="10"
-        android:hint="@string/pais"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:textColorHint="@color/black"
+        app:boxStrokeColor="@color/black"
+        app:endIconContentDescription="@string/codigo_postal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_ciudadCliente" />
+        app:layout_constraintTop_toBottomOf="@+id/tx_ciudad">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_cpCliente"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/codigo_postal"
+            android:inputType="number"
+            app:hintTextColor="@color/black"
+            tools:layout_editor_absoluteX="64dp"
+            tools:layout_editor_absoluteY="369dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tx_pais"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:boxStrokeColor="@color/black"
+        app:endIconContentDescription="@string/nombre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_cp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_paisCliente"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/pais"
+            android:inputType="textCapSentences"
+            app:hintTextColor="@color/black"
+            tools:layout_editor_absoluteX="64dp"
+            tools:layout_editor_absoluteY="369dp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/bt_volverRegistroDireccionCliente"
@@ -109,6 +141,6 @@
         app:iconTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_paisCliente"
+        app:layout_constraintTop_toBottomOf="@+id/tx_pais"
         tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

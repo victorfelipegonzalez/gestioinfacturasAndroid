@@ -10,6 +10,7 @@ public class EmpleadoModel implements Serializable {
     private String correo;
     private String tipo_empleado;
     public long id_empresa;
+    private String password;
 
     public EmpleadoModel() {
     }
@@ -52,5 +53,13 @@ public class EmpleadoModel implements Serializable {
 
     public void setId_empresa(long id_empresa) {
         this.id_empresa = id_empresa;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
