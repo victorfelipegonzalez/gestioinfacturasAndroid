@@ -13,7 +13,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,7 +45,6 @@ public class ClientesActivity extends AppCompatActivity {
     private ListView listView;
     private Gson gson = new Gson();
     private long id_empresa;
-    private ImageButton buscar;
     private AlertDialog.Builder builder;
     private EmpleadoModel empleado;
     private ArrayAdapter<ClienteModel> adapter; // Adapter for the ListView
@@ -58,7 +56,6 @@ public class ClientesActivity extends AppCompatActivity {
         volver = findViewById(R.id.bt_volver_crear_factura);
         listView = findViewById(R.id.list_listaClientes);
         busquedaClientes = findViewById(R.id.et_nombreClienteFactura);
-        buscar = findViewById(R.id.ib_buscar_cliente);
         empleado = (EmpleadoModel) getIntent().getSerializableExtra("EMPLEADO");
         id_empresa = getIntent().getLongExtra("IDEMPRESA", 0);
         obtenerListaClientes();
@@ -200,25 +197,6 @@ public class ClientesActivity extends AppCompatActivity {
 
     public void volverListaClientes(View v) {
         finish();
-    }
-
-    public void bucarCliente(View v) {
-        String busqueda = String.valueOf(busquedaClientes.getText());
-        int contador = 0;
-        if (busqueda.isEmpty()) {
-            Toast.makeText(this, "Debe introducir un nombre", Toast.LENGTH_SHORT).show();
-        } else {
-            // Si encontramos cliente, mostramos los datos
-            for (ClienteModel cliente : lista) {
-                if (cliente.getNombre_cliente().equals(busqueda)) {
-                    mostrarCliente(cliente);
-                    contador++;
-                }
-            }
-            if (contador == 0) {
-                Toast.makeText(this, "Cliente no encontrado", Toast.LENGTH_SHORT).show();
-            }
-        }
     }
 
     private void confirmarBorradoCliente(ClienteModel cliente) {

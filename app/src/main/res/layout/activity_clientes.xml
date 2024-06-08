@@ -76,17 +76,4 @@
             android:paddingHorizontal="5dp"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <ImageButton
-        android:id="@+id/ib_buscar_cliente"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="56dp"
-        android:background="@drawable/lupa"
-        android:contentDescription="@string/buscar_cliente"
-        android:onClick="bucarCliente"
-        app:layout_constraintStart_toEndOf="@+id/tx_direccion"
-        app:layout_constraintTop_toBottomOf="@+id/textView11"
-        tools:ignore="TouchTargetSizeCheck" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
